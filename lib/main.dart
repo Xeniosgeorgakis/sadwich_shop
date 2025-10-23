@@ -54,7 +54,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -114,8 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> get newMethod {
     return <Widget>[
-          const Text('Welcome to my shop!'),
-          
-        ];
+      const Text('Welcome to my shop!'),
+    ];
   }
 }
