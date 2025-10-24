@@ -13,24 +13,41 @@ class App extends StatelessWidget {
       title: 'Sandwich Shop App',
       home: Scaffold(
         appBar: AppBar(title: const Text('Sandwich Counter')),
-        body:  Center(
-
-          child:Row(mainAxisAlignment:MainAxisAlignment.center,children: 
-          [
-            Container(
-            color: Colors.blue,
-            width: 300,
-            height: 200,
-            child: const Center(
-            child: OrderItemDisplay(5, 'Footlong')),
-          ),
-
-          ],)
+        body: Column(
+          children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              Container(
+                color: Colors.blue,
+                width: 300,
+                height: 100,
+                child: const Center(
+                  child: OrderItemDisplay(3, 'BLT'),
+                ),
+              ),
+              Container(
+                color: Colors.blue,
+                width: 250,
+                height: 100,
+                child: const Center(
+                  child: OrderItemDisplay(5, 'Club'),
+                ),
+              ),
+              Container(
+                color: Colors.blue,
+                width: 250,
+                height: 100,
+                child: const Center(
+                  child: OrderItemDisplay(2, 'Veggie'),
+                ),
+              ),
+            ])
+          ],
         ),
       ),
     );
   }
 }
+
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
@@ -42,7 +59,6 @@ class OrderItemDisplay extends StatelessWidget {
     return Text('$quantity $itemType sandwich(es): ${'🥪' * quantity}');
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
