@@ -29,14 +29,12 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
-
+   String _selectedType = 'Footlong';
+   String _notes = '';
+   
   void _increaseQuantity() {
     if (_quantity < widget.maxQuantity) {
-      setState(() {
-        _quantity++;
-        // Add this temporary line to see debugging in action
-        print('Current quantity: $_quantity');
-      });
+      setState(() => _quantity++);
     }
   }
 
@@ -56,10 +54,42 @@ class _OrderScreenState extends State<OrderScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            DropdownButton<String>(
+              value: _selectedType,
+              items: const [
+                DropdownMenuItem(value: 'Footlong', child: Text('Footlong')),
+                DropdownMenuItem(value: 'Six-inch', child: Text('Six-inch')),
+              ],
+              onChanged: (value) {
+                setState(() {
+                  _selectedType = value!;
+                });
+              },
+            ),
             OrderItemDisplay(
               _quantity,
-              'Footlong',
+              _selectedType,
             ),
+            const SizedBox(height: 20),
+            
+            // ADD THIS SIMPLE TEXTFIELD FOR NOTES
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: TextField(
+                decoration: const InputDecoration(
+                  hintText: 'Add special requests...',
+                  border: OutlineInputBorder(),
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    _notes = value;
+                  });
+                },
+              ),
+            ),
+            
+            const SizedBox(height: 20),
+            Text('Notes: $_notes'),
             Row(
               mainAxisAlignment:
                   MainAxisAlignment.center, // pushes buttons to edges
@@ -120,6 +150,7 @@ class StyledButton extends StatelessWidget {
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
+  
 
   const OrderItemDisplay(this.quantity, this.itemType, {super.key});
 
