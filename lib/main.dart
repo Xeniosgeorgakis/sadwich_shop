@@ -29,9 +29,9 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
-   String _selectedType = 'Footlong';
-   String _notes = '';
-   
+  String _selectedType = 'Footlong';
+  String _notes = '';
+
   void _increaseQuantity() {
     if (_quantity < widget.maxQuantity) {
       setState(() => _quantity++);
@@ -71,7 +71,7 @@ class _OrderScreenState extends State<OrderScreen> {
               _selectedType,
             ),
             const SizedBox(height: 20),
-            
+
             // ADD THIS SIMPLE TEXTFIELD FOR NOTES
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
@@ -87,7 +87,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 },
               ),
             ),
-            
+
             const SizedBox(height: 20),
             Text('Notes: $_notes'),
             Row(
@@ -97,7 +97,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 StyledButton(
                   text: 'Remove',
                   onPressed: _decreaseQuantity,
-                  backgroundColor: Colors.redAccent,
+                  backgroundColor: Colors.blue,
                 ),
                 const SizedBox(
                     width: 20), // small gap (for safety on small screens)
@@ -114,6 +114,7 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 }
+
 class StyledButton extends StatelessWidget {
   final String text; // Button label
   final VoidCallback onPressed; // Callback when clicked
@@ -147,10 +148,10 @@ class StyledButton extends StatelessWidget {
     );
   }
 }
+
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
-  
 
   const OrderItemDisplay(this.quantity, this.itemType, {super.key});
 
