@@ -253,6 +253,11 @@ class OrderItemDisplay extends StatelessWidget {
     return Column(
       children: [
         Text(
+          quantity.toString(),
+          style: heading1,
+        ),
+        const SizedBox(height: 4),
+        Text(
           displayText,
           style: normalText,
    
