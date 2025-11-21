@@ -166,6 +166,5 @@ Repository owner: Xeniosgeorgakis
 
 - GitHub: https://github.com/Xeniosgeorgakis
 
-If you want to add an email or other contact method to this README, tell me what you'd like to include and I will add it.
 
 
