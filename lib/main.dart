@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sadwich_shop/views/app_styles.dart';
 import 'package:sadwich_shop/repositories/order_repository.dart';
 
-
 enum BreadType { white, wheat, wholemeal }
+
 void main() {
   runApp(const App());
 }
@@ -42,33 +42,29 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   void initState() {
     super.initState();
-     _orderRepository = OrderRepository(maxQuantity: widget.maxQuantity);
-     _pricingRepository = PricingRepository();
+    _orderRepository = OrderRepository(maxQuantity: widget.maxQuantity);
+    _pricingRepository = PricingRepository();
     _notesController.addListener(() {
       setState(() {});
     });
   }
 
-  
-    @override
+  @override
   void dispose() {
     _notesController.dispose();
     super.dispose();
   }
 
   VoidCallback? _getIncreaseCallback() {
-     if (_orderRepository != null && _orderRepository!.canIncrement) {
+    if (_orderRepository != null && _orderRepository!.canIncrement) {
       return () => setState(() => _orderRepository!.increment());
-    
-      
     }
     return null;
   }
 
   VoidCallback? _getDecreaseCallback() {
-     if (_orderRepository != null && _orderRepository!.canDecrement) {
+    if (_orderRepository != null && _orderRepository!.canDecrement) {
       return () => setState(() => _orderRepository!.decrement());
-    
     }
     return null;
   }
@@ -114,7 +110,6 @@ class _OrderScreenState extends State<OrderScreen> {
           'Sandwich Counter',
           style: heading1,
         ),
-        
       ),
       body: Center(
         child: Column(
@@ -130,7 +125,8 @@ class _OrderScreenState extends State<OrderScreen> {
             // Show total price calculated by PricingRepository
             Builder(builder: (context) {
               final qty = _orderRepository?.quantity ?? 0;
-              final price = _pricingRepository.totalPrice(quantity: qty, isFootlong: _isFootlong);
+              final price = _pricingRepository.totalPrice(
+                  quantity: qty, isFootlong: _isFootlong);
               return Text('Total: £$price', style: normalText);
             }),
             const SizedBox(height: 20),
@@ -145,8 +141,6 @@ class _OrderScreenState extends State<OrderScreen> {
                 ),
                 const Text('footlong', style: normalText),
               ],
-            
-              
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -164,29 +158,26 @@ class _OrderScreenState extends State<OrderScreen> {
             ),
             const SizedBox(height: 10),
             DropdownMenu<BreadType>(
-              textStyle: normalText,
-              initialSelection: _selectedBreadType,
-              onSelected: _onBreadTypeSelected,
-              dropdownMenuEntries: _buildDropdownEntries()
-            ),
+                textStyle: normalText,
+                initialSelection: _selectedBreadType,
+                onSelected: _onBreadTypeSelected,
+                dropdownMenuEntries: _buildDropdownEntries()),
             const SizedBox(height: 20),
 
             // ADD THIS SIMPLE TEXTFIELD FOR NOTES
             Padding(
-             padding: const EdgeInsets.all(40.0),
-             child: TextField(
-              key: const Key('notes_textfield'),
+              padding: const EdgeInsets.all(40.0),
+              child: TextField(
+                key: const Key('notes_textfield'),
                 controller: _notesController,
                 decoration: const InputDecoration(
                   labelText: 'Add a note (e.g., no onions)',
-                  
                 ),
-               
               ),
             ),
 
             const SizedBox(height: 20),
-           
+
             Row(
               mainAxisAlignment:
                   MainAxisAlignment.center, // pushes buttons to edges
@@ -222,17 +213,15 @@ class StyledButton extends StatelessWidget {
 
   const StyledButton({
     super.key,
-    
     required this.onPressed,
     required this.icon,
     required this.label,
     required this.backgroundColor,
-    
   });
 
   @override
   Widget build(BuildContext context) {
-     ButtonStyle myButtonStyle = ElevatedButton.styleFrom(
+    ButtonStyle myButtonStyle = ElevatedButton.styleFrom(
       backgroundColor: backgroundColor,
       foregroundColor: Colors.white,
       textStyle: normalText,
@@ -246,22 +235,16 @@ class StyledButton extends StatelessWidget {
           const SizedBox(width: 8),
           Text(label),
         ],
-      
-        
-        ),
-      );
-      
-    
+      ),
+    );
   }
 }
 
 class OrderItemDisplay extends StatelessWidget {
-  
   final int quantity;
   final String itemType;
   final BreadType breadType;
   final String orderNote;
-
 
   const OrderItemDisplay({
     super.key,
@@ -273,7 +256,7 @@ class OrderItemDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     String displayText =
+    String displayText =
         '$quantity ${breadType.name} $itemType sandwich(es): ${'🥪' * quantity}';
 
     return Column(
@@ -286,18 +269,14 @@ class OrderItemDisplay extends StatelessWidget {
         Text(
           displayText,
           style: normalText,
-   
-          
         ),
-       const SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           'Note: $orderNote',
           style: normalText,
-           ),
+        ),
       ],
-       // This trailing comma makes auto-formatting nicer for build methods.
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-  
 }
