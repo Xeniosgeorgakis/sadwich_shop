@@ -168,12 +168,4 @@ Repository owner: Xeniosgeorgakis
 
 If you want to add an email or other contact method to this README, tell me what you'd like to include and I will add it.
 
----
 
-If you'd like, I can also:
-
-- Add a small CONTRIBUTING.md with a pull request template.
-- Add example screenshots to `assets/screenshots/` and wire them into this README.
-- Create one or two widget tests (for the add/remove behavior and the notes TextField) and run them.
-
-Tell me which follow-up you prefer and I'll implement it.
