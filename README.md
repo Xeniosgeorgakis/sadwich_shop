@@ -15,7 +15,7 @@ A compact Flutter demo that simulates a sandwich counter/order UI. Recent change
 
 The main screen shows the current quantity, the selected sandwich type and bread, whether it's toasted, the order note, and the total price in whole pounds.
 
-_(Add screenshots or GIFs to `assets/screenshots/` and update the examples below.)_
+
 
 ## Table of contents
 
